@@ -77,10 +77,11 @@ export function AIAssistant({
       updateStep('design', 'completed')
       updateStep('validate', 'processing')
 
-      // Add IDs to generated fields
+      // Add IDs to generated fields and ensure properties exist
       const fieldsWithIds = result.fields.map(field => ({
         ...field,
-        id: `ai_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+        id: `ai_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        properties: field.properties || {}
       }))
 
       updateStep('validate', 'completed')
@@ -133,9 +134,10 @@ export function AIAssistant({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
-      <div className="bg-background rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="p-4 sm:p-6">
-          <div className="flex items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3">
+      <div className="bg-background rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+        {/* Fixed Header */}
+        <div className="flex-shrink-0 p-4 sm:p-6 border-b border-border">
+          <div className="flex items-start sm:items-center justify-between gap-3">
             <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
               <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
@@ -151,6 +153,10 @@ export function AIAssistant({
               ×
             </Button>
           </div>
+        </div>
+
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 ai-assistant-scroll">
 
           {/* Input Section */}
           <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">

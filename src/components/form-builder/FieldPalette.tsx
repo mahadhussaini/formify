@@ -4,11 +4,12 @@ import React from 'react'
 import { useDraggable } from '@dnd-kit/core'
 import { FIELD_TEMPLATES } from '@/lib/fieldTemplates'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { 
+import {
   Type, Mail, Hash, Phone, Link, Lock, AlignLeft, ChevronDown,
   Circle, CheckSquare, Calendar, Clock, CalendarClock, Upload,
-  Minus, Palette
+  Minus, Palette, Sparkles
 } from 'lucide-react'
+import { AIStatusIndicator } from '@/components/AIStatusIndicator'
 
 const iconMap = {
   Type, Mail, Hash, Phone, Link, Lock, AlignLeft, ChevronDown,
@@ -101,22 +102,34 @@ export function FieldPalette({ onOpenAIAssistant }: FieldPaletteProps) {
 
         <Card>
           <CardHeader className="pb-2 sm:pb-3">
-            <CardTitle className="text-base sm:text-lg">AI Assistant</CardTitle>
+            <CardTitle className="text-base sm:text-lg flex items-center space-x-2">
+              <span>AI Assistant</span>
+              <AIStatusIndicator compact />
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="p-3 sm:p-4 bg-primary/5 rounded-lg border border-primary/20">
-              <div className="text-sm font-medium text-primary mb-2">
-                🤖 Describe your form
+            <div className="p-3 sm:p-4 bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg border border-primary/20">
+              <div className="text-sm font-medium text-primary mb-2 flex items-center space-x-2">
+                <Sparkles className="w-4 h-4" />
+                <span>Smart Form Generation</span>
               </div>
-              <div className="text-xs text-muted-foreground">
-                Tell the AI what kind of form you want to create, and it will automatically generate the fields for you.
+              <div className="text-xs text-muted-foreground mb-3">
+                Describe your form in plain English and let AI create it instantly with smart validation and optimized fields.
               </div>
-              <button
-                onClick={onOpenAIAssistant}
-                className="mt-3 text-xs text-primary hover:text-primary/80 font-medium touch-manipulation"
-              >
-                Try AI Assistant →
-              </button>
+              <div className="space-y-2">
+                <div className="flex flex-wrap gap-1">
+                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Contact Forms</span>
+                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Surveys</span>
+                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Applications</span>
+                </div>
+                <button
+                  onClick={onOpenAIAssistant}
+                  className="w-full py-2 px-3 bg-primary text-primary-foreground rounded-md text-xs font-medium hover:bg-primary/90 transition-colors touch-manipulation flex items-center justify-center space-x-2"
+                >
+                  <Sparkles className="w-3 h-3" />
+                  <span>Generate with AI</span>
+                </button>
+              </div>
             </div>
           </CardContent>
         </Card>

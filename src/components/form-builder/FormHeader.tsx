@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/Input'
 import { Eye, EyeOff, Save, Share, Settings, Play, ExternalLink, Undo2, Redo2, BarChart3 } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Logo } from '@/components/Logo'
+import { AIStatusIndicator } from '@/components/AIStatusIndicator'
 
 interface FormHeaderProps {
   form: Form
@@ -109,8 +110,11 @@ export function FormHeader({
             </h1>
           )}
 
-          <div className="text-xs text-muted-foreground flex-shrink-0">
-            {form.fields.length} field{form.fields.length !== 1 ? 's' : ''}
+          <div className="flex items-center space-x-2 flex-shrink-0">
+            <span className="text-xs text-muted-foreground">
+              {form.fields.length} field{form.fields.length !== 1 ? 's' : ''}
+            </span>
+            <AIStatusIndicator compact />
           </div>
         </div>
       </div>
@@ -201,6 +205,17 @@ export function FormHeader({
             >
               <BarChart3 className="w-4 h-4" />
               <span className="hidden md:inline">Dashboard</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => window.location.reload()} // Placeholder - could integrate AI analysis
+              className="flex items-center space-x-2"
+              title="AI Form Analysis"
+            >
+              <BarChart3 className="w-4 h-4" />
+              <span className="hidden md:inline">Analyze</span>
             </Button>
 
             <Button
@@ -307,11 +322,12 @@ export function FormHeader({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => window.open(`/dashboard?formId=${form.id}`, '_blank')}
+                onClick={() => window.location.reload()} // Placeholder - could integrate AI analysis
                 className="flex items-center space-x-1 px-2"
-                title="Dashboard"
+                title="AI Analysis"
               >
                 <BarChart3 className="w-4 h-4" />
+                <span className="text-xs">Analyze</span>
               </Button>
 
               <Button

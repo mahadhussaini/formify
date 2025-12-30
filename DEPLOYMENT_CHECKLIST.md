@@ -74,6 +74,8 @@ OPENAI_API_KEY=sk-your-openai-api-key-here
 NEXT_PUBLIC_APP_URL=https://your-app-name.vercel.app
 ```
 
+**🔒 Security**: OpenAI API calls are now handled server-side only. Your API key is never exposed to client browsers.
+
 ### Custom Domain (Optional)
 1. Go to Vercel Dashboard → Project Settings → Domains
 2. Add your custom domain

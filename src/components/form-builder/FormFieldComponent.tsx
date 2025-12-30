@@ -65,7 +65,7 @@ export function FormFieldComponent({
           <Input
             {...baseProps}
             type={field.type}
-            maxLength={field.properties.maxLength}
+            maxLength={field.properties?.maxLength}
           />
         )
 
@@ -74,9 +74,9 @@ export function FormFieldComponent({
           <Input
             {...baseProps}
             type="number"
-            min={field.properties.min}
-            max={field.properties.max}
-            step={field.properties.step}
+            min={field.properties?.min}
+            max={field.properties?.max}
+            step={field.properties?.step}
           />
         )
 
@@ -84,7 +84,7 @@ export function FormFieldComponent({
         return (
           <textarea
             {...baseProps}
-            rows={field.properties.rows || 4}
+            rows={field.properties?.rows || 4}
             className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         )
@@ -155,8 +155,8 @@ export function FormFieldComponent({
           <Input
             {...baseProps}
             type="file"
-            accept={field.properties.accept}
-            multiple={field.properties.multiple}
+            accept={field.properties?.accept}
+            multiple={field.properties?.multiple}
           />
         )
 
@@ -166,13 +166,13 @@ export function FormFieldComponent({
             <Input
               {...baseProps}
               type="range"
-              min={field.properties.min || 0}
-              max={field.properties.max || 100}
-              step={field.properties.step || 1}
+              min={field.properties?.min || 0}
+              max={field.properties?.max || 100}
+              step={field.properties?.step || 1}
             />
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>{field.properties.min || 0}</span>
-              <span>{field.properties.max || 100}</span>
+              <span>{field.properties?.min || 0}</span>
+              <span>{field.properties?.max || 100}</span>
             </div>
           </div>
         )

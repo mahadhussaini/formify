@@ -16,6 +16,7 @@ import { AdvancedValidationBuilder } from '../AdvancedValidationBuilder'
 import { Plus, X, Sparkles, AlertCircle, CheckCircle, Loader2 } from 'lucide-react'
 import { generateId } from '@/lib/utils'
 import { AIValidationService } from '@/lib/ai-service'
+import { AIStatusIndicator } from '@/components/AIStatusIndicator'
 
 interface PropertiesPanelProps {
   selectedField: FormField | null
@@ -82,6 +83,7 @@ export function PropertiesPanel({
     if (!selectedField) return
 
     setIsRequestingAI(true)
+    setAiSuggestions(null) // Clear previous suggestions
     try {
       const suggestions = await AIValidationService.suggestValidationForField(selectedField)
       setAiSuggestions(suggestions)
@@ -402,9 +404,12 @@ export function PropertiesPanel({
               {/* AI Validation */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg flex items-center space-x-2">
-                    <Sparkles className="w-5 h-5" />
-                    <span>AI Validation</span>
+                  <CardTitle className="text-lg flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Sparkles className="w-5 h-5" />
+                      <span>AI Validation</span>
+                    </div>
+                    <AIStatusIndicator compact />
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">

@@ -44,8 +44,10 @@ A modern, AI-powered form builder built with Next.js 14, TypeScript, and Tailwin
 
    Edit `.env.local` and add your OpenAI API key:
    ```env
-   OPENAI_API_KEY=your_openai_api_key_here
+   OPENAI_API_KEY=sk-your-actual-openai-api-key-here
    ```
+
+   **🔒 Security Note**: Never use `NEXT_PUBLIC_OPENAI_API_KEY` or expose your API key in client-side code. The OpenAI integration is now fully server-side for maximum security.
 
 4. **Run development server**
    ```bash
@@ -96,15 +98,32 @@ A modern, AI-powered form builder built with Next.js 14, TypeScript, and Tailwin
 
 ### Environment Variables
 
-Create these environment variables in your deployment platform:
+#### Required Variables
+
+**OPENAI_API_KEY** (Required for AI features)
+- **Source**: [OpenAI API Keys](https://platform.openai.com/api-keys)
+- **Security**: This key is server-side only and never exposed to browsers
+- **Format**: Should start with `sk-`
+- **Permissions**: Ensure your API key has access to GPT-3.5-turbo and GPT-4 models
 
 ```env
-# Required
-OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+```
 
-# Optional
+#### Optional Variables
+
+```env
 NEXT_PUBLIC_APP_URL=https://your-app-name.vercel.app
 ```
+
+#### Setting up OpenAI API Key
+
+1. **Create an OpenAI Account**: Visit [platform.openai.com](https://platform.openai.com)
+2. **Generate API Key**: Go to API Keys section and create a new secret key
+3. **Copy the Key**: It will start with `sk-`
+4. **Add to Environment**: Paste the key in your `.env.local` file (local) or deployment platform settings
+
+⚠️ **Important**: Never commit your API key to version control. Always use environment variables.
 
 ## 🏗️ Project Structure
 
